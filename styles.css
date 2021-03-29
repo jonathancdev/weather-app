@@ -1,0 +1,252 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font: 1em sans-serif;
+  }
+h1 {
+    font-size: 7rem;
+    color: rgb(160, 160, 160);
+}
+h2 {
+    font-size: 4rem;
+    color: rgb(160, 160, 160);
+    position: absolute;
+}
+h3 {
+    font-size: 2.2rem;
+    color: rgb(160, 160, 160);
+}
+h5 {
+    font-size: 1.8rem;
+    color: rgb(160, 160, 160);
+}
+h6 {
+    font-size: 1.5rem;
+    color: rgb(160, 160, 160);
+}
+span{
+    font-size: 1rem;
+}
+li {
+    list-style: none;
+}
+html {
+    height: 100vh;
+    margin: 0;
+}
+body { 
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    font-family: antic;
+}
+.body-wrapper {
+ width: 98%;
+ height: 98%;
+ background-color: rgb(55, 55, 75);
+ margin: 0.3rem auto;
+}
+main {
+    padding-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(55, 55, 75);
+}
+main h5 {
+    padding: 0.2em;
+}
+#init-wrapper {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+}
+#output-wrapper {
+    height: 26em;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#temp {
+    height: 9em;
+    width: 11em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#circle {
+    position: absolute;
+    background-color: white;
+    height: 3em;
+    width: 3em;
+    border-radius: 100%;
+    margin-left: 5em;
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#details {
+    background-color: rgba(169, 169, 169, 0.598);
+    min-height: 10em;
+    width: 300px;
+    border-radius: 15px;
+}
+#nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+.link i {
+    font-size: 2em;
+    padding: 0.3em;
+    color: rgb(95, 95, 130);
+}
+#temp-wrap {
+    display: none;
+}
+#temp-wrap div {
+    display: flex;
+    align-items: center;
+}
+#wind-wrap {
+    display: none;
+}
+#wind-wrap div {
+    display: flex;
+    align-items: center;
+}
+#sun-wrap {
+    display: block;
+}
+#sun-wrap div {
+    display: flex;
+    align-items: center;
+}
+#searched {
+    height: 40px;
+    background-color: ivory;
+    display: flex;
+}
+#searched-span {
+    background-color: cornsilk
+}
+#results {
+    background-color: yellow;
+}
+#spinner {
+    visibility: hidden;
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid #f25a41;
+    border-radius: 100%;
+    margin: auto;
+    animation: spin 1s infinite linear;
+}
+#spinner.visible {
+    visibility: visible;
+}
+
+#form-wrapper {
+    background-color: rgba(95, 95, 130, 0.466);
+    width: 350px;
+    display: flex;
+    align-items: center;
+    padding: 0.1em;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.input-wrap {
+    padding: 0.5em 0 0.5em 0.4em;
+}
+input {
+    padding: 0 0.2em;
+    border-style: none;
+    height: 2em;
+    width: 15em;
+}
+input:invalid:focus {
+    border-color: rgb(255, 147, 147);
+    background-color: #FDD;
+}
+input:focus:invalid {
+    outline: none;
+  }
+.error {
+position: absolute;
+margin-top: -20px;
+margin-left: -5px;
+width  : auto;
+font-size: 80%;
+color: white;
+background-color: #900;
+border-radius: 10px 10px 10px 0px;
+box-sizing: border-box;
+}
+.error.active {
+padding: 0.5em;
+}
+#country-auto {
+    padding-right: 0;
+    visibility: hidden;
+    position: absolute;
+    margin-left: 70px;
+    background-color: lightblue;
+    min-width: 170px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+#country-auto::-webkit-scrollbar {
+    display: none;
+}
+.li-item {
+    min-width: 170px;
+    overflow: hidden;
+}
+.li-item:hover {
+    background-color: salmon;
+    text-overflow: ellipsis;
+}
+#code::-webkit-outer-spin-button,
+#code::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#submit {
+    margin-left: 1.5em;
+    height: 2em;
+    width: 2em;
+    align-self: center;
+    background-color: transparent;
+    border-style: none;
+    display: flex;
+    align-items: center;
+}
+#submit i {
+    font-size: 4em;
+    color: rgba(111, 111, 111, 0.407);
+}
+#results-error {
+    color: rgb(230, 74, 74);
+}
+#city {
+    text-transform: capitalize;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}

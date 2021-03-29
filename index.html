@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <script src="https://kit.fontawesome.com/0bcd4022f6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>weather</title>
+</head>
+<body>
+  <body>
+    <div class="body-wrapper">
+      <header></header>
+      <main>
+        <div id="init-wrapper">
+          <h2>weather</h2>
+        </div>
+        <div id="output-wrapper">
+          <div id="location">
+            <h3>City</h3>
+            <h6>Country</h6>
+          </div>
+          <div id="temp">
+            <h1>23&#176;</h1>
+            <div id="circle">
+              <h6 id="alt">73&#176;</h6>
+            </div>
+          </div>
+          <h6 id="desc">Mostly cloudy</h6>
+          <div id="details">
+
+            <ul id="nav">
+              <li class="link"><i class="fas fa-thermometer-three-quarters"></i></li>
+              <li class="link"><i class="fas fa-wind"></i></li>
+              <li class="link"><i class="fas fa-sun"></i></li>
+            </ul>
+
+            <div id="temp-wrap">
+              <div>
+                <h6>Temperature</h6><h5 id="temp-fill">23</h5>
+              </div>
+              <div>
+                <h6>Feels like</h6><h5 id="feel-fill">23</h5>
+              </div>
+              <div>
+                <h6>Humidity</h6><h5 id="hum-fill">52%</h5>
+              </div>
+            </div>
+
+
+            <div id="wind-wrap">
+              <div>
+                <h6>Speed</h6><h5 id="speed-fill">23</h5>
+              </div>
+              <div>
+                <h6>Direction</h6><h5 id="direc-fill">23</h5>
+              </div>
+            </div>
+
+            <div id="sun-wrap">
+              <div>
+                <h6>Local time</h6><h5 id="time-fill">23</h5>
+              </div>
+              <div id="riseset">
+                <h6>Sunrise</h6><h6>Sunset</h6>
+              </div>
+              <div>
+                <h5 id="rise-fill">0600</h5><h5 id="set-fill">2000</h5>
+              </div>
+            </div>
+
+        </div>
+
+        <h5>Enter your location:</h5>
+
+        <div id="form-wrapper">
+          <form id="form" novalidate autocomplete="off">
+      
+            <div class="input-wrap">
+              <label for="city">
+                <input type="text" autocapitalize="words" id="city" name="city" placeholder="City" required />
+                <span class="error" aria-live="polite"></span>
+                <ul id="country-auto"></ul>
+              </label>
+            </div>
+
+            <div class="input-wrap">
+              <label for="country">
+                <input type="text" id="country" name="country" placeholder="Country" required />
+                <span class="error" aria-live="polite"></span>
+                <ul id="country-auto"></ul>
+              </label>
+            </div>
+
+            <div id="load-wrap">
+              <div id="loading"></div>
+              <div id="fetch-error"></div>
+              <!-- <div id="searched">
+                <span>Getting the weather for</span>
+                <span id='searched-span'>xxxxxxxx</span>
+                <div id="progress">loading</div>
+                <span id="spinner"></span>
+              </div>
+              <div id="results">
+                <p id="results-error"></p>
+                <span>hello</span>
+              </div> -->
+            </div>
+
+          </form>
+          <button id="submit"><i id="mag" class="fas fa-search-location"></i><span id="spinner"></span></button>
+        </div>
+        <p id="results-error">uh oh spaghettios</p>
+
+      </main>
+      <footer></footer>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
