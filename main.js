@@ -530,7 +530,7 @@ const locations = {
 
 // keys
 const keys = {
-  weather: '8e053abceb084558031fe79a3e21c4c6',
+  weather: 'c55bd60f1d7742b09f523d06e681c9f8',
 };
 
 
@@ -556,12 +556,40 @@ const dom = {
     this.countryAuto = document.getElementById('country-auto');
     this.countryAutoHover = document.querySelector('#country-auto:hover');
     this.submitBtn = document.getElementById('submit');
-    this.searchedSpan = document.getElementById('searched-span')
-    this.spinner = document.getElementById('spinner');
     this.mag = document.getElementById('mag');
+    // loading & error
+    this.spinner = document.getElementById('spinner');
     this.resultsError = document.getElementById('results-error');
+    // wrappers
     this.initWrapper = document.getElementById('init-wrapper');
     this.outputWrapper = document.getElementById('output-wrapper');
+    this.tempWrap = document.getElementById('temp-wrap');
+    this.windWrap = document.getElementById('wind-wrap');
+    this.sunWrap = document.getElementById('sun-wrap');
+    // data fills
+      // main
+    this.cityFill = document.getElementById('city-fill');
+    this.countryFill = document.getElementById('country-fill');
+    this.bigTempFill = document.getElementById('big-temp-fill');
+    this.altTempFill = document.getElementById('alt-temp-fill');
+    this.desc = document.getElementById('desc');
+      // temp
+    this.cFill = document.getElementById('c-fill');
+    this.fFill = document.getElementById('f-fill');
+    this.cFeelFill = document.getElementById('c-feel-fill');
+    this.fFeelFill = document.getElementById('c-feel-fill');
+    this.humFill = document.getElementById('hum-fill');
+      //wind
+    this.mSpeedFill = document.getElementById('m-speed-fill');
+    this.iSpeedFill = document.getElementById('i-speed-fill');
+    this.direcFill = document.getElementById('direc-fill');
+      // sun
+    this.timeFill = document.getElementById('time-fill');
+    this.riseFill = document.getElementById('rise-fill');
+    this.setFill = document.getElementById('set-fill');
+      // link icons
+    this.navLinks = Array.from(document.querySelectorAll('.link'));
+
     // listeners
     this.form.addEventListener('submit', this.formSubmit);
     this.city.addEventListener('input', this.cityListen);
@@ -569,12 +597,28 @@ const dom = {
     this.country.addEventListener('input', this.countryListen);
     this.country.addEventListener('blur', this.countryBlur);
     this.submitBtn.addEventListener('click', this.submitForm);
+    this.navLinks.forEach((link) => {
+      link.addEventListener('click', dom.navigate)
+    })
 
+  },
+  navigate() {
+    const type = this.getAttribute('data-type');
+    dom.navLinks.forEach((link) => {
+      const data = link.getAttribute('data-type')
+      if(type !== data) {
+        vis = `${type}Wrap`;
+        hid = `${data}Wrap`;
+        dom[hid].style.display = 'none';
+        link.classList.remove('active');
+        dom[vis].style.display = 'block';
+        this.classList.add('active');
+      }
+    })
   },
   // submit functions
   submitForm() {
     const loc = dom.textFormat();
-    dom.showQuery(loc);
     dom.spinToggle();
     console.log(loc[1])
     util.weatherInfo(requests.getWeather(loc[0], loc[1], keys.weather, util.units));
@@ -592,10 +636,6 @@ const dom = {
     let loc = [];
     loc = [city, code];
     return loc;
-  },
-  showQuery(input) {
-    dom.searchedSpan.innerText = '';
-    dom.searchedSpan.innerText = input[0] + ', ' + input[1] + '...';
   },
   spinToggle() {
     dom.spinner.classList.toggle('visible');
@@ -722,14 +762,33 @@ const util = {
         sunset: data.sys.sunset,
         time: data.timezone,
     };
-    console.log(location);
-    console.log(main);
-    console.log(wind);
-    console.log(other);
+    this.fillDom(location, main, wind, other)
+  },
+  fillDom(location, main, wind, other) {
+    dom.cityFill.innerText = location.city;
+    dom.countryFill.innerText = location.country; // compare code to get country
+
+    dom.bigTempFill.innerText = main.temp;
+    dom.altTempFill.innerText = '' // calculate
+    dom.desc.innerText = main.desc;
+
+    dom.cFill.innerText = main.temp;
+    dom.cFeelFill.innerText = main.feel;
+    dom.fFill.innerText = '' // function(main.temp);
+    dom.fFeelFill.innerText = '' // function(main.feel);
+    dom.humFill.innerText = main.humidity;
+
+    dom.mSpeedFill.innerText = wind.speed;
+    dom.iSpeedFill.innerText = ''; // calculate
+    dom.direcFill.innerText = wind.deg; // see function in scratch
+
+    dom.timeFill.innerText = other.time; // calculate
+    dom.riseFill.innerText = other.sunrise; // calculate
+    dom.setFill.innerText = other.sunset; // calculate
   },
 };
 
-util.weatherInfo(requests.getWeather('Cartagena', 'Spain', keys.weather, 'imperial'));
+util.weatherInfo(requests.getWeather('London', 'England', keys.weather, 'imperial'));
 
 
 dom.init();

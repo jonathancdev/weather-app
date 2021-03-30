@@ -1,4 +1,35 @@
 
+
+/*~~~~~ F O N T S ~~~~~*/
+@font-face {
+    src: url(fonts/FiraSans-Thin.ttf);
+    font-family: firathin;
+}
+@font-face {
+    src: url(fonts/FiraSans-ExtraLight.ttf);
+    font-family: firaextralight;
+}
+@font-face {
+    src: url(fonts/FiraSans-Light.ttf);
+    font-family: firalight;
+}
+@font-face {
+    src: url(fonts/FiraSans-Regular.ttf);
+    font-family: firaregular;
+}
+@font-face {
+    src: url(fonts/FiraSans-Medium.ttf);
+    font-family: firamedium;
+}
+@font-face {
+    src: url(fonts/FiraSans-SemiBold.ttf);
+    font-family: firasemibold;
+}
+@font-face {
+    src: url(fonts/FiraSans-Bold.ttf);
+    font-family: firabold;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +38,7 @@
 h1 {
     font-size: 7rem;
     color: rgb(160, 160, 160);
+    font-family: firathin;
 }
 h2 {
     font-size: 4rem;
@@ -16,6 +48,7 @@ h2 {
 h3 {
     font-size: 2.2rem;
     color: rgb(160, 160, 160);
+    font-family: firaextralight;
 }
 h5 {
     font-size: 1.8rem;
@@ -24,6 +57,7 @@ h5 {
 h6 {
     font-size: 1.5rem;
     color: rgb(160, 160, 160);
+    font-family: firaextralight;
 }
 span{
     font-size: 1rem;
@@ -101,6 +135,9 @@ main h5 {
 #nav {
     display: flex;
     justify-content: space-evenly;
+}
+.link.active {
+    background-color: violet;
 }
 .link i {
     font-size: 2em;

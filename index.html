@@ -18,55 +18,72 @@
         </div>
         <div id="output-wrapper">
           <div id="location">
-            <h3>City</h3>
-            <h6>Country</h6>
+            <h3 id="city-fill"></h3>
+            <h6 id="country-fill"></h6>
           </div>
           <div id="temp">
-            <h1>23&#176;</h1>
+            <h1 id="big-temp-fill"></h1>
             <div id="circle">
-              <h6 id="alt">73&#176;</h6>
+              <h6 id="alt-temp-fill"></h6><span>&#176;</span>
             </div>
           </div>
           <h6 id="desc">Mostly cloudy</h6>
           <div id="details">
 
             <ul id="nav">
-              <li class="link"><i class="fas fa-thermometer-three-quarters"></i></li>
-              <li class="link"><i class="fas fa-wind"></i></li>
-              <li class="link"><i class="fas fa-sun"></i></li>
+              <li class="link active" data-type="temp"><i class="fas fa-thermometer-three-quarters"></i></li>
+              <li class="link" data-type="wind"><i class="fas fa-wind"></i></li>
+              <li class="link" data-type="sun"><i class="fas fa-sun"></i></li>
             </ul>
 
             <div id="temp-wrap">
               <div>
-                <h6>Temperature</h6><h5 id="temp-fill">23</h5>
+                <h6>Temperature</h6>
+                <h5 id="c-fill"></h5>
+                <span>c&#176;</span>
+                <h5>/</h5>
+                <h5 id="f-fill"></h5>
+                <span>f&#176;</span>
               </div>
               <div>
-                <h6>Feels like</h6><h5 id="feel-fill">23</h5>
+                <h6>Feels like</h6>
+                <h5 id="c-feel-fill"></h5>
+                <span>c&#176;</span>
+                <h5>/</h5>
+                <h5 id="f-feel-fill"></h5>
+                <span>f&#176;</span>
               </div>
               <div>
-                <h6>Humidity</h6><h5 id="hum-fill">52%</h5>
+                <h6>Humidity</h6>
+                <h5 id="hum-fill"></h5>
+                <span>%</span>
               </div>
             </div>
 
 
             <div id="wind-wrap">
               <div>
-                <h6>Speed</h6><h5 id="speed-fill">23</h5>
+                <h6>Speed</h6>
+                <h5 id="m-speed-fill"></h5>
+                <span>meters/second</span>
+                <h5 id="i-speed-fill"></h5>
+                <span>miles/hour</span>
               </div>
               <div>
-                <h6>Direction</h6><h5 id="direc-fill">23</h5>
+                <h6>Direction</h6><h5 id="direc-fill"></h5>
               </div>
             </div>
 
             <div id="sun-wrap">
               <div>
-                <h6>Local time</h6><h5 id="time-fill">23</h5>
+                <h6>Local time</h6>
+                <h5 id="time-fill"></h5>
               </div>
               <div id="riseset">
                 <h6>Sunrise</h6><h6>Sunset</h6>
               </div>
               <div>
-                <h5 id="rise-fill">0600</h5><h5 id="set-fill">2000</h5>
+                <h5 id="rise-fill"></h5><h5 id="set-fill"></h5>
               </div>
             </div>
 
@@ -96,16 +113,6 @@
             <div id="load-wrap">
               <div id="loading"></div>
               <div id="fetch-error"></div>
-              <!-- <div id="searched">
-                <span>Getting the weather for</span>
-                <span id='searched-span'>xxxxxxxx</span>
-                <div id="progress">loading</div>
-                <span id="spinner"></span>
-              </div>
-              <div id="results">
-                <p id="results-error"></p>
-                <span>hello</span>
-              </div> -->
             </div>
 
           </form>
