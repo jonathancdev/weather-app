@@ -51,8 +51,9 @@ h3 {
     font-family: firaextralight;
 }
 h5 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: rgb(160, 160, 160);
+    font-family: firalight;
 }
 h6 {
     font-size: 1.5rem;
@@ -107,37 +108,93 @@ main h5 {
     flex-direction: column;
     align-items: center;
 }
+#location h3 {
+    font-family: firathin;
+}
+#location h6 {
+    font-family: firaregular;
+}
+.degrees {
+    margin-top: -2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #temp {
+    position: relative;
     height: 9em;
     width: 11em;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgba(255, 255, 255, 0.534);
+}
+#temp span {
+    font-size: 3em;
+    margin-bottom: -0.8em;
+    font-family: firathin;
+}
+#temp p {
+    font-size: 2.8em;
+    font-family: firalight;
+    margin-left: -0.1em;
 }
 #circle {
     position: absolute;
-    background-color: white;
-    height: 3em;
-    width: 3em;
+    background-color: rgba(67, 61, 61, 0.729);
+    height: 3.25em;
+    width: 3.25em;
     border-radius: 100%;
-    margin-left: 5em;
-    margin-top: 3em;
+    margin-left: 6em;
+    margin-top: 9em;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgba(255, 255, 255, 0.534);
 }
+#circle h6 {
+    font-size: 1.8em;
+    font-family: firaextralight;
+}
+#circle span {
+    font-size: 1em;
+    font-family: firathin;
+    margin-top: 1.75em;
+    margin-bottom: -0.5em;
+}
+#circle p {
+    font-size: 0.75em;
+    font-family: firalight;
+    margin-left: -0.1em;
+}
+
 #details {
+    margin: 0.4em;
     background-color: rgba(169, 169, 169, 0.598);
-    min-height: 10em;
-    width: 300px;
-    border-radius: 15px;
+    min-height: 11em;
+    width: 330px;
+    border-radius: 1em;
+    padding: 0 0.8em 0.5em 0.8em;
+}
+#details h1, h2, h3, h4, h5, h6, span {
+    color: rgba(255, 255, 255, 0.534);
+
 }
 #nav {
     display: flex;
     justify-content: space-evenly;
 }
+.link {
+    margin: 0.3em 0;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .link.active {
-    background-color: violet;
+    background-color: rgba(210, 128, 210, 0.432);
+    border-radius: 100%;
 }
 .link i {
     font-size: 2em;
@@ -145,11 +202,29 @@ main h5 {
     color: rgb(95, 95, 130);
 }
 #temp-wrap {
-    display: none;
+    display: block;
 }
 #temp-wrap div {
     display: flex;
     align-items: center;
+}
+#temp-wrap h6 {
+    margin-right: 0.75em;
+    font-family: firaregular;
+    font-size: 1.8em;
+}
+#temp-wrap h5 {
+    font-family: firalight;
+    font-size: 1.5em;
+}
+#temp-wrap h4 {
+    font-size: 2em;
+    margin: 0 0.2em;
+    font-family: firathin;
+}
+#temp-wrap span {
+    font-size: 1.5em;
+    font-family: firaextralight;
 }
 #wind-wrap {
     display: none;
@@ -158,8 +233,30 @@ main h5 {
     display: flex;
     align-items: center;
 }
+#wind-wrap h6 {
+    font-family: firaregular;
+    font-size: 1.8em;
+}
+#wind-wrap h5 {
+    font-family: firalight;
+    font-size: 1.8em;
+}
+#wind-wrap h4 {
+    font-size: 2em;
+    font-family: firalight;
+    margin-left: 1.8em;
+}
+#wind-wrap span {
+    font-size: 1em;
+    font-family: firalight;
+}
+.stack {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.7em;
+}
 #sun-wrap {
-    display: block;
+    display: none;
 }
 #sun-wrap div {
     display: flex;
@@ -210,6 +307,7 @@ input {
     border-style: none;
     height: 2em;
     width: 15em;
+    font-family: firaextralight;
 }
 input:invalid:focus {
     border-color: rgb(255, 147, 147);

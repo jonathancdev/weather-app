@@ -525,15 +525,18 @@ const locations = {
     let obj = list.filter((i) => i.name === country)
     let code = obj[0].code;
     return code;
-  }
+  },
+  codeToCountry(code) {
+    let list = this.mapCountries();
+    let obj = list.filter((i) => i.code === code)
+    let country = obj[0].name
+    return country;
+  },
 }
-
 // keys
 const keys = {
   weather: 'c55bd60f1d7742b09f523d06e681c9f8',
-};
-
-
+}
 const dom = {
   init() {
     this.hovered = false;
@@ -577,7 +580,7 @@ const dom = {
     this.cFill = document.getElementById('c-fill');
     this.fFill = document.getElementById('f-fill');
     this.cFeelFill = document.getElementById('c-feel-fill');
-    this.fFeelFill = document.getElementById('c-feel-fill');
+    this.fFeelFill = document.getElementById('f-feel-fill');
     this.humFill = document.getElementById('hum-fill');
       //wind
     this.mSpeedFill = document.getElementById('m-speed-fill');
@@ -589,7 +592,6 @@ const dom = {
     this.setFill = document.getElementById('set-fill');
       // link icons
     this.navLinks = Array.from(document.querySelectorAll('.link'));
-
     // listeners
     this.form.addEventListener('submit', this.formSubmit);
     this.city.addEventListener('input', this.cityListen);
@@ -600,7 +602,6 @@ const dom = {
     this.navLinks.forEach((link) => {
       link.addEventListener('click', dom.navigate)
     })
-
   },
   navigate() {
     const type = this.getAttribute('data-type');
@@ -620,14 +621,12 @@ const dom = {
   submitForm() {
     const loc = dom.textFormat();
     dom.spinToggle();
-    console.log(loc[1])
     util.weatherInfo(requests.getWeather(loc[0], loc[1], keys.weather, util.units));
   },
   textFormat() {
     let city = dom.city.value;
     let country = dom.country.value;
     let code = locations.isoCode(country);
-    console.log(code)
     city = city.split(' ');
     city = city.map((i) => {
      return i[0].toUpperCase() + i.substring(1);
@@ -717,7 +716,6 @@ const requests = {
   async getWeather(city, country, key, unit) {
     const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${key}&units=${unit}`);
     if (response.status !==200) {
-      console.log(response)
       dom.resultsError.innerText = '';
       dom.resultsError.innerText = 'We couldn\'t find your location... try that again';
       dom.city.focus();
@@ -740,7 +738,6 @@ const util = {
   },
   async weatherInfo(fn) {
     const data = await fn;
-    console.log(data)
     const location = {
         city: data.name,
         country: data.sys.country,
@@ -748,9 +745,9 @@ const util = {
         lon: data.coord.lon,
     };
     const main = {
-        temp: data.main.temp,
+        temp: Math.round(data.main.temp),
         humidity: data.main.humidity,
-        feel: data.main.feels_like,
+        feel: Math.round(data.main.feels_like),
         desc: data.weather[0].description,
     };
     const wind = {
@@ -761,34 +758,80 @@ const util = {
         sunrise: data.sys.sunrise,
         sunset: data.sys.sunset,
         time: data.timezone,
+        dt: data.dt,
     };
     this.fillDom(location, main, wind, other)
   },
   fillDom(location, main, wind, other) {
     dom.cityFill.innerText = location.city;
-    dom.countryFill.innerText = location.country; // compare code to get country
+    dom.countryFill.innerText = locations.codeToCountry(location.country);
 
     dom.bigTempFill.innerText = main.temp;
-    dom.altTempFill.innerText = '' // calculate
+    dom.altTempFill.innerText = this.convertToF(main.temp);
     dom.desc.innerText = main.desc;
 
     dom.cFill.innerText = main.temp;
     dom.cFeelFill.innerText = main.feel;
-    dom.fFill.innerText = '' // function(main.temp);
-    dom.fFeelFill.innerText = '' // function(main.feel);
+    dom.fFill.innerText = Math.round(this.convertToF(main.temp));
+    dom.fFeelFill.innerText = Math.round(this.convertToF(main.feel));
     dom.humFill.innerText = main.humidity;
 
-    dom.mSpeedFill.innerText = wind.speed;
-    dom.iSpeedFill.innerText = ''; // calculate
-    dom.direcFill.innerText = wind.deg; // see function in scratch
+    dom.mSpeedFill.innerText = wind.speed.toFixed(2);
+    dom.iSpeedFill.innerText = this.convertSpeed(wind.speed).toFixed(2);
+    dom.direcFill.innerText = this.windDirection(wind.deg);
 
-    dom.timeFill.innerText = other.time; // calculate
-    dom.riseFill.innerText = other.sunrise; // calculate
-    dom.setFill.innerText = other.sunset; // calculate
+    dom.timeFill.innerText = this.convertTime(other.time);
+    dom.riseFill.innerText = this.convertSun(other.sunrise, other.time);
+    dom.setFill.innerText = this.convertSun(other.sunset, other.time);
+
+    
+
+
   },
+  convertToF(c) {
+    let f = c * 9/5 + 32;
+    return f;
+  },
+  convertSpeed(m) {
+    const meters = m;
+    const miles = Math.round(meters * 3600 / 1610.3*1000)/1000
+    return miles;
+  },
+  windDirection(angle) {
+    const directions = ['↑ N', '↗ NE', '→ E', '↘ SE', '↓ S', '↙ SW', '← W', '↖ NW'];
+    return directions[Math.round(angle / 45) % 8];
+  },
+  convertTime(tz) {
+    const date = new Date;
+    let hours = date.getUTCHours() + (tz/3600);
+    if (hours > 24) {
+      hours = '0' + (hours - 24);
+    }
+    let minutes = date.getUTCMinutes();
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    const time = hours + ':' + minutes
+    return time;
+  },
+  convertSun(ms, tz) {
+    const date = new Date(ms * 1000)
+    let hours = date.getUTCHours() + (tz/3600);
+    if (hours > 24) {
+      hours = '0' + (hours - 24);
+    }
+    let minutes = date.getUTCMinutes();
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    const time = hours + ':' + minutes
+    return time;
+  }
 };
 
-util.weatherInfo(requests.getWeather('London', 'England', keys.weather, 'imperial'));
+util.weatherInfo(requests.getWeather('Madrid', 'Spain', keys.weather, 'metric'));
+util.weatherInfo(requests.getWeather('Shanghai', 'China', keys.weather, 'metric'));
+
 
 
 dom.init();

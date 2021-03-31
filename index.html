@@ -21,12 +21,23 @@
             <h3 id="city-fill"></h3>
             <h6 id="country-fill"></h6>
           </div>
-          <div id="temp">
-            <h1 id="big-temp-fill"></h1>
-            <div id="circle">
-              <h6 id="alt-temp-fill"></h6><span>&#176;</span>
+          
+          <div id="circle">
+            <h6 id="alt-temp-fill"></h6>
+            <div class="degrees">
+              <span>&#176;</span>
+              <p>f</p>
             </div>
           </div>
+
+          <div id="temp">
+            <h1 id="big-temp-fill"></h1>
+            <div class="degrees">
+              <span>&#176;</span>
+              <p>c</p>
+            </div>
+          </div>
+
           <h6 id="desc">Mostly cloudy</h6>
           <div id="details">
 
@@ -41,7 +52,7 @@
                 <h6>Temperature</h6>
                 <h5 id="c-fill"></h5>
                 <span>c&#176;</span>
-                <h5>/</h5>
+                <h4>/</h4>
                 <h5 id="f-fill"></h5>
                 <span>f&#176;</span>
               </div>
@@ -49,7 +60,7 @@
                 <h6>Feels like</h6>
                 <h5 id="c-feel-fill"></h5>
                 <span>c&#176;</span>
-                <h5>/</h5>
+                <h4>/</h4>
                 <h5 id="f-feel-fill"></h5>
                 <span>f&#176;</span>
               </div>
@@ -63,14 +74,20 @@
 
             <div id="wind-wrap">
               <div>
-                <h6>Speed</h6>
-                <h5 id="m-speed-fill"></h5>
-                <span>meters/second</span>
-                <h5 id="i-speed-fill"></h5>
-                <span>miles/hour</span>
+                <h6>Speed</h6>              
+                <div>
+                  <div class="stack">
+                    <h5 id="m-speed-fill"></h5>
+                    <span>meters/second</span>
+                  </div>
+                  <div class="stack">
+                    <h5 id="i-speed-fill"></h5>
+                    <span>miles/hour</span>
+                  </div>
+                </div>
               </div>
               <div>
-                <h6>Direction</h6><h5 id="direc-fill"></h5>
+                <h6>Direction</h6><h4 id="direc-fill"></h4>
               </div>
             </div>
 
@@ -123,6 +140,7 @@
       </main>
       <footer></footer>
     </div>
+    <script src="lib/moment.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
