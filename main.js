@@ -622,6 +622,7 @@ const dom = {
     const loc = dom.textFormat();
     dom.spinToggle();
     util.weatherInfo(requests.getWeather(loc[0], loc[1], keys.weather, util.units));
+    dom.toggleWrappers();
   },
   textFormat() {
     let city = dom.city.value;
@@ -638,6 +639,14 @@ const dom = {
   },
   spinToggle() {
     dom.spinner.classList.toggle('visible');
+    dom.mag.classList.toggle('visible');
+  },
+  toggleWrappers() {
+    if (util.initPage === true) {
+      dom.initWrapper.style.visibility = 'hidden';
+      dom.outputWrapper.style.visibility = 'visible';
+      util.initPage = false;
+    }
   },
   // CITY METHODS
   cityListen() {
@@ -717,7 +726,7 @@ const requests = {
     const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${key}&units=${unit}`);
     if (response.status !==200) {
       dom.resultsError.innerText = '';
-      dom.resultsError.innerText = 'We couldn\'t find your location... try that again';
+      dom.resultsError.innerText = 'We couldn\'t find that city... please try again';
       dom.city.focus();
       dom.city.select();
       dom.cityShowError('api');
@@ -735,6 +744,7 @@ const requests = {
 const util = {
   init() {
     this.units = 'metric';
+    this.initPage = true;
   },
   async weatherInfo(fn) {
     const data = await fn;
@@ -789,7 +799,7 @@ const util = {
 
   },
   convertToF(c) {
-    let f = c * 9/5 + 32;
+    let f = Math.round(c * 9/5 + 32);
     return f;
   },
   convertSpeed(m) {
@@ -804,7 +814,7 @@ const util = {
   convertTime(tz) {
     const date = new Date;
     let hours = date.getUTCHours() + (tz/3600);
-    if (hours > 24) {
+    if (hours >= 24) {
       hours = '0' + (hours - 24);
     }
     let minutes = date.getUTCMinutes();
@@ -815,10 +825,13 @@ const util = {
     return time;
   },
   convertSun(ms, tz) {
+    console.log(tz)
     const date = new Date(ms * 1000)
     let hours = date.getUTCHours() + (tz/3600);
     if (hours > 24) {
       hours = '0' + (hours - 24);
+    } else if (hours < 0) {
+      hours += 24;
     }
     let minutes = date.getUTCMinutes();
     if (minutes < 10) {
@@ -829,7 +842,7 @@ const util = {
   }
 };
 
-util.weatherInfo(requests.getWeather('Madrid', 'Spain', keys.weather, 'metric'));
+util.weatherInfo(requests.getWeather('Omaha', 'The United States of America', keys.weather, 'metric'));
 util.weatherInfo(requests.getWeather('Shanghai', 'China', keys.weather, 'metric'));
 
 

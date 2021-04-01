@@ -9,10 +9,9 @@
   <title>weather</title>
 </head>
 <body>
-  <body>
     <div class="body-wrapper">
       <header></header>
-      <main>
+      <div class="mainsub">
         <div id="init-wrapper">
           <h2>weather</h2>
         </div>
@@ -77,36 +76,45 @@
                 <h6>Speed</h6>              
                 <div>
                   <div class="stack">
-                    <h5 id="m-speed-fill"></h5>
+                    <h3 id="m-speed-fill"></h3>
                     <span>meters/second</span>
                   </div>
                   <div class="stack">
-                    <h5 id="i-speed-fill"></h5>
+                    <h3 id="i-speed-fill"></h3>
                     <span>miles/hour</span>
                   </div>
                 </div>
               </div>
               <div>
-                <h6>Direction</h6><h4 id="direc-fill"></h4>
+                <h6>Direction</h6>
+                <h4 id="direc-fill"></h4>
               </div>
             </div>
 
             <div id="sun-wrap">
               <div>
                 <h6>Local time</h6>
-                <h5 id="time-fill"></h5>
+                <h3 id="time-fill"></h3>
               </div>
-              <div id="riseset">
-                <h6>Sunrise</h6><h6>Sunset</h6>
+
+              <div class="side">
+                <div class="sun-stack">
+                  <h6>Sunrise</h6>
+                  <h4 id="rise-fill"></h4>
+                </div>
+  
+                <div class="sun-stack">
+                  <h6>Sunset</h6>
+                  <h4 id="set-fill"></h4>
+                </div>
               </div>
-              <div>
-                <h5 id="rise-fill"></h5><h5 id="set-fill"></h5>
-              </div>
+
+
             </div>
 
         </div>
 
-        <h5>Enter your location:</h5>
+        <h5 id="loch5">Enter your location:</h5>
 
         <div id="form-wrapper">
           <form id="form" novalidate autocomplete="off">
@@ -123,7 +131,8 @@
               <label for="country">
                 <input type="text" id="country" name="country" placeholder="Country" required />
                 <span class="error" aria-live="polite"></span>
-                <ul id="country-auto"></ul>
+                <ul id="country-auto">
+                </ul>
               </label>
             </div>
 
@@ -133,14 +142,15 @@
             </div>
 
           </form>
-          <button id="submit"><i id="mag" class="fas fa-search-location"></i><span id="spinner"></span></button>
+          <button id="submit"><i id="mag" class="visible fas fa-search-location"></i><span id="spinner"></span></button>
         </div>
-        <p id="results-error">uh oh spaghettios</p>
+        <p id="results-error"></p>
 
-      </main>
+      </div>
       <footer></footer>
     </div>
-    <script src="lib/moment.min.js"></script>
-    <script src="main.js"></script>
+
   </body>
+  <script src="lib/moment.min.js"></script>
+  <script src="main.js"></script>
 </html>

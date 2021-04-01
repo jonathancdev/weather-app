@@ -37,34 +37,38 @@
   }
 h1 {
     font-size: 7rem;
-    color: rgb(160, 160, 160);
     font-family: firathin;
+    color: white;
 }
 h2 {
     font-size: 4rem;
-    color: rgb(160, 160, 160);
     position: absolute;
+    font-family: firathin;
 }
 h3 {
-    font-size: 2.2rem;
-    color: rgb(160, 160, 160);
-    font-family: firaextralight;
+    font-size: 2rem;
+    font-family: firathin;
 }
 h5 {
-    font-size: 1.5rem;
-    color: rgb(160, 160, 160);
+    font-size: 1.2rem;
     font-family: firalight;
 }
 h6 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: rgb(160, 160, 160);
     font-family: firaextralight;
+}
+p {
+    font-family: firaregular;
+    font-size: 0.8em;
 }
 span{
     font-size: 1rem;
 }
 li {
     list-style: none;
+    font-family: firalight;
+    font-size: 0.8em;
 }
 html {
     height: 100vh;
@@ -81,8 +85,8 @@ body {
  background-color: rgb(55, 55, 75);
  margin: 0.3rem auto;
 }
-main {
-    padding-top: 2em;
+.mainsub {
+    padding-top: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,13 +96,14 @@ main h5 {
     padding: 0.2em;
 }
 #init-wrapper {
-    visibility: hidden;
+    visibility: visible;
     display: flex;
     justify-content: center;
 }
 #output-wrapper {
+    visibility: hidden;
     height: 26em;
-    width: 350px;
+    width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,9 +113,7 @@ main h5 {
     flex-direction: column;
     align-items: center;
 }
-#location h3 {
-    font-family: firathin;
-}
+
 #location h6 {
     font-family: firaregular;
 }
@@ -145,15 +148,15 @@ main h5 {
     height: 3.25em;
     width: 3.25em;
     border-radius: 100%;
-    margin-left: 6em;
-    margin-top: 9em;
+    margin-left: 12em;
+    margin-top: 7.5em;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgba(255, 255, 255, 0.534);
 }
 #circle h6 {
-    font-size: 1.8em;
+    font-size: 1.3em;
     font-family: firaextralight;
 }
 #circle span {
@@ -170,10 +173,10 @@ main h5 {
 
 #details {
     margin: 0.4em;
-    background-color: rgba(169, 169, 169, 0.598);
+    background-color: rgba(212, 208, 208, 0.461);
     min-height: 11em;
-    width: 330px;
-    border-radius: 1em;
+    width: 280px;
+    border-radius: 5px;
     padding: 0 0.8em 0.5em 0.8em;
 }
 #details h1, h2, h3, h4, h5, h6, span {
@@ -209,13 +212,9 @@ main h5 {
     align-items: center;
 }
 #temp-wrap h6 {
-    margin-right: 0.75em;
+    margin-right: 0.5em;
     font-family: firaregular;
     font-size: 1.8em;
-}
-#temp-wrap h5 {
-    font-family: firalight;
-    font-size: 1.5em;
 }
 #temp-wrap h4 {
     font-size: 2em;
@@ -233,27 +232,27 @@ main h5 {
     display: flex;
     align-items: center;
 }
+
 #wind-wrap h6 {
     font-family: firaregular;
     font-size: 1.8em;
-}
-#wind-wrap h5 {
-    font-family: firalight;
-    font-size: 1.8em;
+    margin: 0em 1em 0em 0;
 }
 #wind-wrap h4 {
     font-size: 2em;
     font-family: firalight;
-    margin-left: 1.8em;
+    margin-left: 0.5em;
 }
 #wind-wrap span {
-    font-size: 1em;
+    font-size: 0.8em;
     font-family: firalight;
+    padding: 0;
+    margin: 0;
 }
 .stack {
     display: flex;
     flex-direction: column;
-    margin: 0 0.7em;
+    padding: 0 0.5em 0;
 }
 #sun-wrap {
     display: none;
@@ -261,6 +260,35 @@ main h5 {
 #sun-wrap div {
     display: flex;
     align-items: center;
+}
+#sun-wrap h6 {
+    font-family: firaregular;
+    font-size: 1.8em;
+
+}
+#sun-wrap h3 {
+    margin: 0 0 0 1em;
+}
+#sun-wrap h4 {
+    font-size: 2em;
+    font-family: firalight;
+}
+#sun-wrap span {
+    font-size: 0.8em;
+    font-family: firalight;
+    padding: 0;
+    margin: 0;
+}
+.sun-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 4.5em;
+}
+
+.side {
+    display: flex;
 }
 #searched {
     height: 40px;
@@ -276,38 +304,47 @@ main h5 {
 #spinner {
     visibility: hidden;
     position: absolute;
-    width: 3em;
-    height: 3em;
-    border: 2px solid #f3f3f3;
-    border-top: 3px solid #f25a41;
+    width: 2.5em;
+    height: 2.5em;
+    border: 5px dotted #f3f3f3;
+    border-top: 3px solid rgb(210, 128, 210);
     border-radius: 100%;
     margin: auto;
-    animation: spin 1s infinite linear;
+    animation: spin 0.9s infinite linear;
 }
 #spinner.visible {
     visibility: visible;
 }
-
+#loch5 {
+    font-family: firathin;
+    align-self: flex-start;
+    margin-left: 0.5em;
+}
 #form-wrapper {
+    visibility: visible;
     background-color: rgba(95, 95, 130, 0.466);
-    width: 350px;
+    width: 300px;
     display: flex;
     align-items: center;
+    margin-top: 0em;
     padding: 0.1em;
+    border-radius: 5px;
 }
 form {
     display: flex;
     flex-direction: column;
+    width: 230px;
 }
 .input-wrap {
-    padding: 0.5em 0 0.5em 0.4em;
+    padding: 0.3em 0 0.5em 0.4em;
 }
 input {
     padding: 0 0.2em;
     border-style: none;
     height: 2em;
-    width: 15em;
+    width: 14em;
     font-family: firaextralight;
+    overflow: hidden;
 }
 input:invalid:focus {
     border-color: rgb(255, 147, 147);
@@ -317,38 +354,52 @@ input:focus:invalid {
     outline: none;
   }
 .error {
+visibility: hidden;
 position: absolute;
-margin-top: -20px;
-margin-left: -5px;
-width  : auto;
+margin-top: -2.2em;
+margin-left: -5em;
+min-width: 6em;
+padding: 0.5em;
 font-size: 80%;
 color: white;
-background-color: #900;
+background-color: rgb(230, 74, 74);
 border-radius: 10px 10px 10px 0px;
 box-sizing: border-box;
+text-align: center;
+z-index: 0;
 }
 .error.active {
+visibility: visible;
 padding: 0.5em;
 }
+
 #country-auto {
-    padding-right: 0;
+    padding: 0 0.5em;
     visibility: hidden;
     position: absolute;
-    margin-left: 70px;
-    background-color: lightblue;
-    min-width: 170px;
-    max-height: 200px;
+    margin-left: 5em;
+    margin-top: 1em;
+    background-color: transparent;
+    max-width: 15em;
+    max-height: 6em;
+    height: 10em;
     overflow-y: scroll;
+    border-radius: 5px;
+    z-index: 1;
 }
 #country-auto::-webkit-scrollbar {
     display: none;
 }
 .li-item {
     min-width: 170px;
+    min-height: 1.3em;
+    padding: 0.3em 0.5em;
     overflow: hidden;
+    color: rgb(84, 84, 84);
+    background-color: white;
 }
 .li-item:hover {
-    background-color: salmon;
+    background-color:rgb(210, 128, 210);
     text-overflow: ellipsis;
 }
 #code::-webkit-outer-spin-button,
@@ -358,7 +409,7 @@ padding: 0.5em;
 }
 
 #submit {
-    margin-left: 1.5em;
+    margin-left: 1em;
     height: 2em;
     width: 2em;
     align-self: center;
@@ -367,9 +418,13 @@ padding: 0.5em;
     display: flex;
     align-items: center;
 }
-#submit i {
-    font-size: 4em;
-    color: rgba(111, 111, 111, 0.407);
+#mag {
+    visibility: hidden;
+    font-size: 3.3em;
+    color: rgba(255, 255, 255, 0.407);
+}
+#mag.visible {
+    visibility: visible;
 }
 #results-error {
     color: rgb(230, 74, 74);
@@ -383,5 +438,26 @@ padding: 0.5em;
         transform: rotate(0deg);
     } to {
         transform: rotate(360deg);
+    }
+}
+
+@media (min-width:641px) {
+    .error {
+        visibility: hidden;
+        position: absolute;
+        margin-top: -4.5em;
+        margin-left: 12em;
+        min-width: 6em;
+        padding: 0.5em;
+        font-size: 80%;
+        color: white;
+        background-color: rgb(230, 74, 74);
+        border-radius: 10px 10px 10px 0px;
+        box-sizing: border-box;
+        text-align: center;
+        z-index: 0;
+        }
+    .mainsub {
+        
     }
 }
