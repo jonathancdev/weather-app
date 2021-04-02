@@ -733,7 +733,7 @@ const dom = {
 // API interactions
 const requests = {
   async getWeather(city, country, key, unit) {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${key}&units=${unit}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${key}&units=${unit}`);
     if (response.status !==200) {
       dom.resultsError.innerText = '';
       dom.resultsError.innerText = 'We couldn\'t find that city... please try again';
