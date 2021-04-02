@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <script src="https://kit.fontawesome.com/0bcd4022f6.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <title>weather</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <script
+      src="https://kit.fontawesome.com/0bcd4022f6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>weather</title>
+  </head>
+  <body>
     <div class="body-wrapper">
       <header></header>
       <div class="mainsub">
         <div id="init-wrapper">
           <h2>weather</h2>
+          <i class="fas fa-cloud-sun"></i>
+
+        </div>
+        <div id="error-wrapper">
+          <h2>oops</h2>
+          <i class="far fa-frown"></i>
+
         </div>
         <div id="output-wrapper">
           <div id="location">
             <h3 id="city-fill"></h3>
             <h6 id="country-fill"></h6>
           </div>
-          
+
           <div id="circle">
             <h6 id="alt-temp-fill"></h6>
             <div class="degrees">
@@ -37,11 +47,12 @@
             </div>
           </div>
 
-          <h6 id="desc">Mostly cloudy</h6>
+          <h6 id="desc"></h6>
           <div id="details">
-
             <ul id="nav">
-              <li class="link active" data-type="temp"><i class="fas fa-thermometer-three-quarters"></i></li>
+              <li class="link active" data-type="temp">
+                <i class="fas fa-thermometer-three-quarters"></i>
+              </li>
               <li class="link" data-type="wind"><i class="fas fa-wind"></i></li>
               <li class="link" data-type="sun"><i class="fas fa-sun"></i></li>
             </ul>
@@ -70,10 +81,9 @@
               </div>
             </div>
 
-
             <div id="wind-wrap">
               <div>
-                <h6>Speed</h6>              
+                <h6>Speed</h6>
                 <div>
                   <div class="stack">
                     <h3 id="m-speed-fill"></h3>
@@ -102,54 +112,66 @@
                   <h6>Sunrise</h6>
                   <h4 id="rise-fill"></h4>
                 </div>
-  
+
                 <div class="sun-stack">
                   <h6>Sunset</h6>
                   <h4 id="set-fill"></h4>
                 </div>
               </div>
-
-
             </div>
+          </div>
 
         </div>
-
-        <h5 id="loch5">Enter your location:</h5>
-
-        <div id="form-wrapper">
-          <form id="form" novalidate autocomplete="off">
-      
-            <div class="input-wrap">
-              <label for="city">
-                <input type="text" autocapitalize="words" id="city" name="city" placeholder="City" required />
-                <span class="error" aria-live="polite"></span>
-                <ul id="country-auto"></ul>
-              </label>
-            </div>
-
-            <div class="input-wrap">
-              <label for="country">
-                <input type="text" id="country" name="country" placeholder="Country" required />
-                <span class="error" aria-live="polite"></span>
-                <ul id="country-auto">
-                </ul>
-              </label>
-            </div>
-
-            <div id="load-wrap">
-              <div id="loading"></div>
-              <div id="fetch-error"></div>
-            </div>
-
-          </form>
-          <button id="submit"><i id="mag" class="visible fas fa-search-location"></i><span id="spinner"></span></button>
-        </div>
-        <p id="results-error"></p>
-
       </div>
+      
+      <div id="form-wrapper">
+        <form id="form" novalidate autocomplete="off">
+          <h5 id="loch5">Enter a location:</h5>
+          <div class="input-wrap">
+            <label for="city">
+              <input
+                type="text"
+                autocapitalize="words"
+                id="city"
+                name="city"
+                placeholder="City"
+                required
+              />
+              <span class="error" aria-live="polite"></span>
+              <ul id="country-auto"></ul>
+            </label>
+          </div>
+
+          <div class="input-wrap">
+            <label for="country">
+              <input
+                type="text"
+                id="country"
+                name="country"
+                placeholder="Country"
+                required
+              />
+              <span class="error" aria-live="polite"></span>
+              <ul id="country-auto">
+                <li id="li-top">Select country:</li>
+              </ul>
+            </label>
+          </div>
+
+          <div id="load-wrap">
+            <div id="loading"></div>
+            <div id="fetch-error"></div>
+          </div>
+        </form>
+        <button id="submit">
+          <i id="mag" class="visible fas fa-search-location"></i
+          ><span id="spinner"></span>
+        </button>
+      </div>
+        <p id="results-error"></p>
+      
       <footer></footer>
     </div>
-
   </body>
   <script src="lib/moment.min.js"></script>
   <script src="main.js"></script>

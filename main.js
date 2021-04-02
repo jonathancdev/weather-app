@@ -566,6 +566,7 @@ const dom = {
     // wrappers
     this.initWrapper = document.getElementById('init-wrapper');
     this.outputWrapper = document.getElementById('output-wrapper');
+    this.errorWrapper = document.getElementById('error-wrapper');
     this.tempWrap = document.getElementById('temp-wrap');
     this.windWrap = document.getElementById('wind-wrap');
     this.sunWrap = document.getElementById('sun-wrap');
@@ -622,7 +623,6 @@ const dom = {
     const loc = dom.textFormat();
     dom.spinToggle();
     util.weatherInfo(requests.getWeather(loc[0], loc[1], keys.weather, util.units));
-    dom.toggleWrappers();
   },
   textFormat() {
     let city = dom.city.value;
@@ -642,17 +642,25 @@ const dom = {
     dom.mag.classList.toggle('visible');
   },
   toggleWrappers() {
-    if (util.initPage === true) {
+    if (util.initPage === true || util.errorPage === true) {
       dom.initWrapper.style.visibility = 'hidden';
+      dom.errorWrapper.style.visibility = 'hidden'
       dom.outputWrapper.style.visibility = 'visible';
       util.initPage = false;
     }
+  },
+  showErrorWrapper() {
+      dom.initWrapper.style.visibility = 'hidden';
+      dom.outputWrapper.style.visibility = 'hidden';
+      dom.errorWrapper.style.visibility = 'visible';
+      util.errorPage = true;
   },
   // CITY METHODS
   cityListen() {
     dom.cityShowError('empty');
   },
   cityShowError(type) {
+    dom.cityError.visibility = 'hidden';
     if (dom.city.validity.valueMissing && type === 'empty') {
       dom.cityError.style.visibility = 'visible';
       dom.cityError.textContent = 'Enter a city';
@@ -680,8 +688,10 @@ const dom = {
     dom.countryShowError();
   },
   countryShow(array) {
+      const firstLi = ['<li id="li-top">Select country:</li>']
     if (dom.country.value !== '') {
-      const html = array.join('');
+      const newArray = firstLi.concat(array);
+      const html = newArray.join('');
       dom.countryAuto.innerHTML = html;
     }
   },
@@ -731,7 +741,9 @@ const requests = {
       dom.city.select();
       dom.cityShowError('api');
       dom.spinToggle();
+      return response.status;
     } else {
+      dom.resultsError.innerText = '';
       const data = await response.json();
       if (dom.spinner.classList.contains('visible')) {
         setTimeout(function() { dom.spinToggle(); }, 500);
@@ -745,32 +757,38 @@ const util = {
   init() {
     this.units = 'metric';
     this.initPage = true;
+    this.errorPage = false;
   },
   async weatherInfo(fn) {
     const data = await fn;
-    const location = {
-        city: data.name,
-        country: data.sys.country,
-        lat: data.coord.lat,
-        lon: data.coord.lon,
-    };
-    const main = {
-        temp: Math.round(data.main.temp),
-        humidity: data.main.humidity,
-        feel: Math.round(data.main.feels_like),
-        desc: data.weather[0].description,
-    };
-    const wind = {
-        deg: data.wind.deg,
-        speed: data.wind.speed,
-    };
-    const other = {
-        sunrise: data.sys.sunrise,
-        sunset: data.sys.sunset,
-        time: data.timezone,
-        dt: data.dt,
-    };
-    this.fillDom(location, main, wind, other)
+    if (data === 404) {
+      dom.showErrorWrapper();
+    } else {
+      const location = {
+          city: data.name,
+          country: data.sys.country,
+          lat: data.coord.lat,
+          lon: data.coord.lon,
+      };
+      const main = {
+          temp: Math.round(data.main.temp),
+          humidity: data.main.humidity,
+          feel: Math.round(data.main.feels_like),
+          desc: data.weather[0].description,
+      };
+      const wind = {
+          deg: data.wind.deg,
+          speed: data.wind.speed,
+      };
+      const other = {
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset,
+          time: data.timezone,
+          dt: data.dt,
+      };
+      this.fillDom(location, main, wind, other)
+      dom.toggleWrappers();
+    }
   },
   fillDom(location, main, wind, other) {
     dom.cityFill.innerText = location.city;
@@ -842,8 +860,8 @@ const util = {
   }
 };
 
-util.weatherInfo(requests.getWeather('Omaha', 'The United States of America', keys.weather, 'metric'));
-util.weatherInfo(requests.getWeather('Shanghai', 'China', keys.weather, 'metric'));
+//util.weatherInfo(requests.getWeather('Omaha', 'The United States of America', keys.weather, 'metric'));
+
 
 
 
