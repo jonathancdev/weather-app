@@ -4,5 +4,5 @@ The goal for this project was to implement asynchronous JavaScript via async/awa
 ## Description
 
 
-<img src="screenshot1.gif" alt="screenshot" width="500"/>
-<img src="screenshot2.gif" alt="screenshot" width="500"/>
+<img src="screenshot1.gif" alt="screenshot" height="600"/>
+<img src="screenshot2.gif" alt="screenshot" height="600"/>
